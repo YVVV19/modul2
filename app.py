@@ -11,17 +11,11 @@ def create(name: str = Query(None, description="Input your name:")):
     names.append(name)
     return f"List:{names}"
 
+
 @app.get("/read/")
 def read():
     return f"{names}"
 
-@app.post("/delete/")
-def delete(index: int = Query(None, description="Input index:")):
-    if index:
-        names.pop(index)
-        return f"{names}"
-    else:
-        return f"No information by your index:{index}"
 
 @app.get("/update/")
 def update(name: str = Query(None, description="Input your name:")):
@@ -32,4 +26,13 @@ def update(name: str = Query(None, description="Input your name:")):
             names.append(name)
             return f"{names}"
         
-# uvicorn app:app  
+
+@app.post("/delete/")
+def delete(index: int = Query(None, description="Input index:")):
+    if index:
+        names.pop(index)
+        return f"{names}"
+    else:
+        return f"No information by your index:{index}"
+        
+# uvicorn app:app
