@@ -30,5 +30,6 @@ def update(name: str = Query(None, description="Input your name:")):
             return f"The name {name} is already in LIST "
         else:
             names.append(name)
+            return f"{names}"
         
 # uvicorn app:app  
