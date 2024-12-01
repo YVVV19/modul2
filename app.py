@@ -19,12 +19,11 @@ def read():
 
 @app.get("/update/")
 def update(name: str = Query(None, description="Input your name:")):
-    for i in names:
-        if name == i:
-            return f"The name {name} is already in LIST "
-        else:
-            names.append(name)
-            return f"{names}"
+    if name in names:
+        return f"The name {name} is already in LIST "
+    else:
+        names.append(name)
+        return f"{names}"
         
 
 @app.post("/delete/")
